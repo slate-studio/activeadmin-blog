@@ -1,0 +1,17 @@
+<%= render :partial => "header" %>
+
+<div>
+  <!-- TITLE -->
+  <h2><%= @post.title %></h2>
+
+  <!-- DATE -->
+  <span>Date: <%= @post.date %></span>
+
+  <!-- CATEGORIES -->
+  <% if @post.categories.size > 0 %>
+    <span>Posted in: <%= post.in_categories %></span>
+  <% end %>
+
+  <!-- CONTENT -->
+  <div><%= @post.content.html_safe %></div>
+</div>
