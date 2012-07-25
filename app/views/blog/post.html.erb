@@ -9,7 +9,7 @@
 
   <!-- CATEGORIES -->
   <% if @post.categories.size > 0 %>
-    <span>Posted in: <%= post.in_categories %></span>
+    <span>Posted in: <%= post.category_links_string %></span>
   <% end %>
 
   <!-- CONTENT -->

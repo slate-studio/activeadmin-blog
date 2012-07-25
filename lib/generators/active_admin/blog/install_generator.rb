@@ -11,11 +11,6 @@ module ActiveAdmin
           puts "Installing models:"
           copy_file "models/blog_category.rb",  "app/models/blog_category.rb"
           copy_file "models/blog_post.rb",      "app/models/blog_post.rb"
-          copy_file "models/blog_image.rb",     "app/models/blog_image.rb"
-
-          # uploaders
-          puts "Installing uploaders:"
-          copy_file "uploaders/blog_image_uploader.rb", "app/uploaders/blog_image_uploader.rb"
 
           # controllers
           puts "Installing controllers:"
@@ -25,7 +20,6 @@ module ActiveAdmin
           puts "Installing admin:"
           copy_file "admin/blog_categories.rb", "app/admin/blog_categories.rb"
           copy_file "admin/blog_posts.rb",      "app/admin/blog_posts.rb"
-          copy_file "admin/blog_images.rb",     "app/admin/blog_images.rb"
         end
 
         def setup_routes
@@ -38,6 +32,9 @@ module ActiveAdmin
           gem "mongoid_slug"
           gem "mongoid_search"
           gem "nokogiri"
+          gem "activeadmin-mongoid-reorder"
+          gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
+          gem "select2-rails"
         end
 
         def show_congrats

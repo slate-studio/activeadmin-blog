@@ -3,8 +3,8 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name    = 'activeadmin-mongoid-blog'
-  gem.version = '0.1.0'
-  gem.summary = 'Generic blog on the top of activeadmin and mongoid'
+  gem.version = '0.2.0'
+  gem.summary = 'Blog app on the top of activeadmin and mongoid, using redactor and select2 plugins.'
   gem.description = ''
   gem.license = 'MIT'
 

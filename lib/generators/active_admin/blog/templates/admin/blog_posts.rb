@@ -3,7 +3,7 @@ ActiveAdmin.register BlogPost, :as => "Post" do
         :label    => "All Posts",
         :priority => 1
 
-  actions :new, :create, :index, :update, :edit, :delete
+  actions :new, :create, :index, :update, :edit, :destroy
 
   # Scopes
   scope :all, :default => true
@@ -15,20 +15,20 @@ ActiveAdmin.register BlogPost, :as => "Post" do
   end
 
   index do
-    column("") do |p|
-      url = p.featured_image.admin_thumb.url
-      if url.nil?
-        url = "http://placehold.it/60x40?text=IMG"
-      end
-      image_tag(url, :alt => p.title, :size=>"60x40")
-    end
+    # Hiding this column until get support of images
+    #column("") do |p| # Thumbnail
+    #  url = p.featured_image.admin_thumb.url
+    #  if url.nil?
+    #    url = "http://placehold.it/60x40?text=IMG"
+    #  end
+    #  image_tag(url, :alt => p.title, :size=>"60x40")
+    #end
+    
     column("Title") do |p|
       html = "<strong>#{p.title}</strong>"
-      #if p.author
-      #  html << "<br/>by #{link_to p.author.name, admin_author_path(p.author)}"
-      #end
       html.html_safe
     end
+    
     column("Details") do |p|
       html = ""
       if p.categories.size > 0
@@ -40,62 +40,50 @@ ActiveAdmin.register BlogPost, :as => "Post" do
       end
       html.html_safe
     end
-    column("Date",        :admin_date)
-    column "" do |p|
-      #link_to("View", blog_post_path(p), :class => "member_link", :target => "_blank") +
-      link_to("Edit", edit_admin_post_path(p), :class => "member_link") +
-      link_to("Delete", admin_post_path(p), :method => :delete, :confirm => "Are you sure?", :class => "member_link")
+    
+    column("Date") do |p|
+      """#{p.date.to_s.gsub('-', '/')}<br/>
+         <i>#{p.draft ? 'Draft' : 'Published'}</i>""".html_safe
     end
+
+    default_actions
   end
 
   form do |f|
     f.inputs "Title" do
       f.input :title, :required => true
-      f.input :featured_image, :hint => "#{f.object.featured_image.url}"
     end
     f.inputs "Content" do
-      f.input :content, :as => :text
+      f.input :content, :as => :text,
+                        :input_html => { :class => "redactor" }
     end
     f.inputs "Details" do
       unless f.object.new?
         f.input :permalink
       end
 
-      f.input :date,    :input_html => { :class => "datepicker" }
-      #f.input :author,  :as             => :select,
-      #                  :include_blank  => false
+      f.input :date,  :input_html => { :class => "datepicker" }
 
       f.input :draft, :as             => :select,
                       :label          => "State",
                       :collection     => [["draft", "true"], ["published", "false"]],
-                      :include_blank  => false
+                      :include_blank  => false,
+                      :input_html     => { :class => "select2" }
 
       categories = BlogCategory.all
       if categories.size > 0
         f.input :categories,  :as             => :select,
                               :label          => "Published in",
-                              :input_html     => { :multiple => true },
+                              :input_html     => { :multiple => true, :class => "select2" },
                               :collection     => categories,
                               :include_blank  => false,
                               :hint => "Click on field and select category from dropdown"
       end
 
-      f.input :tags, :hint => "Select from the list or type a new one and press ENTER"
+      f.input :tags,  :hint       => "Select from the list or type a new one and press ENTER",
+                      :input_html => { "data-url"  => "/admin/posts/tags" }
     end
     f.buttons
-  end
-
-  member_action :upload_image,  :method => :put do
-    post  = BlogPost.find_by_permalink(params[:id])
-    image = post.images.create!(:file => params[:file])
-    html  = "<img src=\"#{image.file.url}\" alt=\"\" />".html_safe
-    render :text => html
-  end
-
-  member_action :images,  :method => :get do
-    post  = BlogPost.find_by_permalink(params[:id])
-    json = post.images.collect {|i| { :thumb => i.file.admin_thumb.url, :image => i.file.url } }
-    render :json => json
   end
 
   collection_action :tags, :method => :get do

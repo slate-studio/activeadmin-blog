@@ -34,7 +34,11 @@ $ rails console
 
 ```rails g active_admin:blog:install blog``` - this makes a copy of all required models, controllers, admin files and routes. ```blog``` is a prefix which is used for blog, so in this case blog is located at ```/blog```.
 
-To override controllers run: ```rails g active_admin:blog:views``` - this will copy templates into ```/app/views/blog``` folder.
+To override views run: ```rails g active_admin:blog:views``` - you can find them in ```/app/views/blog``` folder.
+
+Assets (Redactor & Select2)
+
+Add ```//= require activeadmin_mongoid_blog``` lines to the beginning of ```active_admin.js``` and ```active_admin.css```.
 
 
 CarrierWave configuration;

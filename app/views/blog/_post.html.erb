@@ -7,11 +7,11 @@
 
   <!-- CATEGORIES -->
   <% if post.categories.size > 0 %>
-    <span>Posted in: <%= post.in_categories %></span>
+    <span>Posted in: <%= post.category_links_string %></span>
   <% end %>
 
   <!-- FEATURED IMAGE LINK --!>
-  <% if post.has_featured_image %>
+  <% if post.has_featured_image? %>
     <a href="<%= blog_post_path(post) %>" title="Read More">
       <%= image_tag post.featured_image_url, :alt=>post.title %>
     </a>

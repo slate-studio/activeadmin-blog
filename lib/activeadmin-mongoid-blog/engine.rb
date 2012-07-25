@@ -1,7 +1,8 @@
 module ActiveAdmin
   module Mongoid
     module Blog
-      require "activeadmin-mongoid-blog/engine"
+      class Engine < ::Rails::Engine
+      end
     end
   end
 end

@@ -2,6 +2,7 @@ class BlogCategory
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::Reorder
 
   # Fields
   field :name

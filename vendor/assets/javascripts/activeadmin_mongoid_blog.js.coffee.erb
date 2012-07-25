@@ -1,0 +1,18 @@
+#= require redactor-rails
+#= require select2
+#= require activeadmin_reorder_table
+
+$ ->
+  # Enable redactor
+  window.redactor_settings =
+    css_path: "<%= asset_path 'redactor_style.css' %>"
+  $('.redactor').redactor redactor_settings
+
+  # Enable select2
+  $('.select2').select2
+    minimumResultsForSearch: 10
+
+  tags_input = $("#post_tags")
+  if tags_input.length > 0
+    tags_url = tags_input.attr("data-url")
+    $.get tags_url, (tags) => tags_input.select2({tags: tags })
