@@ -1,7 +1,7 @@
 //= require select2
 //= require redactor-rails
 
-#edit_post {
+#edit_post, #new_post {
   #post_content_input label { display:none; }
   #post_title_input label { display:none; }
 
