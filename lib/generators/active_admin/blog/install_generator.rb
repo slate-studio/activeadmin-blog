@@ -34,6 +34,8 @@ module ActiveAdmin
           gem "nokogiri"
           gem "activeadmin-mongoid-reorder"
           gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
+          gem "carrierwave-mongoid", :require => 'carrierwave/mongoid'
+          gem "mini_magick"
           gem "select2-rails"
         end
 

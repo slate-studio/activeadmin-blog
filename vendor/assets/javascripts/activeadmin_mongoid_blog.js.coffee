@@ -4,9 +4,9 @@
 
 $ ->
   # Enable redactor
-  window.redactor_settings =
-    css_path: "<%= asset_path 'redactor_style.css' %>"
-  $('.redactor').redactor redactor_settings
+  $('.redactor').redactor 
+    imageUpload:  "/redactor_rails/pictures"
+    imageGetJson: "/redactor_rails/pictures"
 
   # Enable select2
   $('.select2').select2

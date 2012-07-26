@@ -3,7 +3,11 @@
 
 #edit_post {
   #post_content_input label { display:none; }
+  #post_title_input label { display:none; }
+
+  #post_title { font-size:2em; }
   
   #post_category_ids { width:76%; }
   #post_draft { width:160px; }
+  #post_date { width:138px; }
 } 
