@@ -57,6 +57,6 @@ Add to your `active_admin.css.scss`:
 
 Install default views templates to `/app/views/blog`:
 
-    $ rails g active_admin:blog:views
+    $ rails g active_admin:blog:views blog
 
 ### The End
