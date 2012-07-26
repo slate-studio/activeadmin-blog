@@ -38,10 +38,6 @@ class BlogPost
     false
   end
 
-  def category_links_string
-    categories.collect{|c| link_to(c.name, admin_category_path(c))}.join(", ")
-  end
-
   def excerpt
     html = Nokogiri::HTML(content)
     begin
@@ -56,7 +52,7 @@ class BlogPost
   end
 
   # Class methods
-  def published_in_category(category_slug)
+  def self.published_in_category(category_slug)
     category = BlogCategory.find_by_permalink!(category_slug)
     category.blog_posts.published
   end

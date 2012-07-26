@@ -7,7 +7,12 @@
 
   <!-- CATEGORIES -->
   <% if post.categories.size > 0 %>
-    <span>Posted in: <%= post.category_links_string %></span>
+    <span>Posted in:</span>
+    <ul>
+      <% post.categories.each do |c| %>
+      <li><a href='<% blog_path() + "?category=#{c.name}"%>' title="<%= c.name %>"><%= c.name %></a></li>
+      <% end %>
+    </ul>
   <% end %>
 
   <!-- FEATURED IMAGE LINK --!>
