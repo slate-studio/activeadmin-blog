@@ -39,6 +39,8 @@ Install blog models, admin files, routes and blog controller, replace `blog` val
 
     $ rails g active_admin:blog:install blog
 
+Run `bundle` to install new gems.
+
 As blog post editor `redactor.js` is used. It comes with a image uploading featured supported by **carrierwave**, install `Picture` model with command:
 
     $ rails generate redactor:install
