@@ -1,7 +1,7 @@
 <div class="container">
   <%= render :partial => "header" %>
 
-  <div>
+  <div style="margin-bottom:2em;">
     <!-- TITLE -->
     <h2><%= @post.title %></h2>
 
@@ -19,5 +19,17 @@
 
     <!-- CONTENT -->
     <div><%= @post.content.html_safe %></div>
+
+    <!-- TAGS -->
+    <% if @post.tags? %>
+      <span>Tags:</span>
+      <ul>
+        <% @post.tags.split(',').each do |t| %>
+          <li><%= link_to t, blog_path() + "?tag=#{t}" %></li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
+
+  <%= render :partial => "footer" %>
 </div>

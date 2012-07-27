@@ -24,7 +24,8 @@ echo '
     gem "mongoid"
     gem "devise"
     gem "activeadmin-mongoid"
-    gem "activeadmin-mongoid-blog"' >> Gemfile
+    gem "activeadmin-mongoid-blog"
+    gem "twitter-bootstrap-rails"' >> Gemfile
 
 
 bundle
@@ -52,7 +53,36 @@ cat temp_file.tmp >> app/assets/stylesheets/active_admin.css.scss
 rm temp_file.tmp
 
 
+rails g bootstrap:install
+
+echo '/*
+ *= require bootstrap_and_overrides
+ *= require_self
+ */
+
+.pagination .page.current {
+  float:left;
+  padding:0 14px;
+  line-height:34px;
+  text-decoration:none;
+  border:1px solid #DDD;
+  border-left-width:0;
+  color:#999;
+  cursor:default;
+  background-color:whiteSmoke;
+}
+.pagination span:first-child, .pagination .first a { border-left-width:1px; }' > app/assets/stylesheets/application.css
+
+echo '//= require jquery
+//= require jquery_ujs
+//= require twitter/bootstrap
+//= require bootstrap
+'  > app/assets/stylesheets/application.js
+
+
 echo "\n\n\n"
 echo "$ rails c"
 echo ">> AdminUser.create :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'"
 echo "\n\n\n"
+
+

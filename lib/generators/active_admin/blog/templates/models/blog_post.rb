@@ -38,6 +38,10 @@ class BlogPost
     false
   end
 
+  def tags?
+    tags.size > 0
+  end
+
   def excerpt
     html = Nokogiri::HTML(content)
     begin

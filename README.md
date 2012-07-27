@@ -83,7 +83,24 @@ In `application.js` include:
 
 In `application.css` include:
 
-    *= require bootstrap_and_overrides
+    /*
+        *= require bootstrap_and_overrides
+        *= require_self
+    */
+
+    // Tuning styles for kaminari pagination
+    .pagination .page.current {
+      float:left;
+      padding:0 14px;
+      line-height:34px;
+      text-decoration:none;
+      border:1px solid #DDD;
+      border-left-width:0;
+      color:#999;
+      cursor:default;
+      background-color:whiteSmoke;
+    }
+    .pagination span:first-child, .pagination .first a { border-left-width:1px; }
 
 ### The End
 
