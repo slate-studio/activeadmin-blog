@@ -22,15 +22,17 @@ This command creates new rails project fully configured and ready for Heroku dep
 
 Add these gems to Gemfile and run `bundle` command:
 
-    gem 'bson_ext'
-    gem 'mongoid'
-    gem 'devise'
-    gem 'activeadmin-mongoid'
+    gem "bson_ext"
+    gem "mongoid"
+    gem "devise"
+    gem "activeadmin-mongoid"
     gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
-    gem 'activeadmin-mongoid-blog'
-    gem 'therubyracer'
-    gem 'twitter-bootstrap-rails'
-
+    gem "activeadmin-mongoid-blog"
+    gem "therubyracer"
+    gem "twitter-bootstrap-rails"
+    gem "aws-s3"
+    gem "fog"
+    gem "asset_sync"
 
 Run generators to and check settings in `/config/mongoid.yml`, `/config/initializers/active_admin.rb`:
 

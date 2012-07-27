@@ -27,7 +27,11 @@ gem "activeadmin-mongoid"
 gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
 gem "activeadmin-mongoid-blog"
 gem "therubyracer"
-gem "twitter-bootstrap-rails"' >> Gemfile
+gem "twitter-bootstrap-rails"
+gem "aws-s3"
+gem "fog"
+gem "asset_sync"
+' >> Gemfile
 
 
 bundle
