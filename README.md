@@ -2,11 +2,17 @@
 
 Blog app on the top of activeadmin and mongoid, using redactor and select2 plugins. Could be useful for almost every activeadmin based project.
 
-### Quick new blog
+
+## Quick install
 
 Replace `new_blog` name with the real one and run:
 
     export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
+
+This command creates new rails project fully configured and ready for Heroku deploy.
+
+
+## Manual Installation
 
 ### Start a new rails project
 
@@ -106,7 +112,10 @@ In `application.css` include:
     }
     .pagination span:first-child, .pagination .first a { border-left-width:1px; }
 
-### Heroku
+
+## Heroku
+
+#### Mongoid
 
 Configure local and production `config/mongoid.yml` settings to look like this:
 
@@ -121,7 +130,37 @@ Configure local and production `config/mongoid.yml` settings to look like this:
     production:
       uri: <%= ENV["MONGO_URL"] %>
 
-Create an S3 bucket for redactor image uploading feature and configure carrierwave.
+#### Carrierwave
+
+Create an S3 bucket for redactor image uploading feature and configure `config/initializers/carrierwave.rb`:
+
+    CarrierWave.configure do |config|
+      config.cache_dir = File.join(Rails.root, "tmp", "uploads")
+      config.storage = :fog
+
+      config.fog_credentials = {
+        :provider               => "AWS",
+        :aws_access_key_id      => ENV["AWS_ACCESS_KEY_ID"],
+        :aws_secret_access_key  => ENV["AWS_SECRET_ACCESS_KEY"]
+      }
+
+      case Rails.env.to_sym
+        when :development
+          config.storage = :file
+        when :production
+          config.fog_directory  = ENV["FOG_MEDIA_DIRECTORY"]
+          config.fog_host       = "//#{ ENV["FOG_MEDIA_DIRECTORY"] }.s3.amazonaws.com"
+          config.fog_attributes = {"Cache-Control"=>"max-age=315576000"}  # optional, defaults to {}
+      end
+    end
+
+Make sure you've set Heroku environtment variables:
+
+    FOG_MEDIA_DIRECTORY
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
+
+
 
 ### The End
 
