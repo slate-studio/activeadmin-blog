@@ -1,19 +1,19 @@
-<div>
+<div style="margin-bottom:2em;">
   <!-- TITLE -->
-  <h2><%= post.title %></h2>
+  <a href="<%= blog_post_path(post) %>" title="Read this post"><h2><%= post.title %></h2></a>
 
-  <!-- DATE -->
-  <span>Date: <%= post.date %></span>
 
-  <!-- CATEGORIES -->
-  <% if post.categories.size > 0 %>
-    <span>Posted in:</span>
-    <ul>
-      <% post.categories.each do |c| %>
-      <li><a href='<% blog_path() + "?category=#{c.name}"%>' title="<%= c.name %>"><%= c.name %></a></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <!-- DATE & CATEGORIES -->
+  <p>
+    <span>Published at <em><%= post.date %></em> <% if post.categories.size > 0 %>in:<% end %></span>
+    <% if post.categories.size > 0 %>
+      <ul>
+        <% post.categories.each do |c| %>
+        <li><a href='<% blog_path() + "?category=#{c.name}"%>' title="<%= c.name %>"><%= c.name %></a></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </p>
 
   <!-- FEATURED IMAGE LINK --!>
   <% if post.has_featured_image? %>
@@ -25,6 +25,6 @@
   <!-- EXCERPT -->
   <p><%= post.excerpt %></p>
 
-  <!-- READ MORE --!>
+  <!-- READ MORE -->
   <a href="<%= blog_post_path(post) %>" title="Read More">Read More</a>
 </div>

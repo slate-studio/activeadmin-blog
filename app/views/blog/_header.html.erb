@@ -1,8 +1,11 @@
-<header>
-  <a href="<%= blog_path %>" title="Blog Title"><h1>Blog Title</h1></a>
-  <ul>
-    <% BlogCategory.all.each do |c| %>
-      <li><a href="<%= blog_path %>?category=<%= c.permalink %>" title="<%= c.name %>"><%= c.name %></a></li>
-    <% end %>
-  </ul>
+<header style="margin-bottom:2em;">
+  <h1>This is a new blog</h1>
+  <p>
+    <ul>
+      <li><a href="<%= blog_path %>" title="All Posts">All Posts</a></li>
+      <% BlogCategory.all.each do |c| %>
+        <li><a href="<%= blog_path %>?category=<%= c.permalink %>" title="<%= c.name %>"><%= c.name %></a></li>
+      <% end %>
+    </ul>
+  </p>
 </header>

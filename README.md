@@ -65,6 +65,26 @@ Install default views templates to `/app/views/blog`:
 
     $ rails g active_admin:blog:views blog
 
+### Default style
+
+By default blog is comming with a Twitter Bootstrap typography, to enable it add to `Gemfile`:
+
+    gem "twitter-bootstrap-rails", :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"
+
+Install required bootstrap assets:
+
+    rails g bootstrap:install
+
+Remove `reuire_self` line from `application.js` and `application.css` these are added by bootstrap intall and will break the layout with activeadmin styles.
+
+In `application.js` include:
+
+    //= require bootstrap
+
+In `application.css` include:
+
+    *= require bootstrap_and_overrides
+
 ### The End
 
 
