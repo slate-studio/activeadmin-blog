@@ -43,20 +43,16 @@ rails g redactor:install
 
 
 # Tweak active_admin.js
-cat app/assets/javascripts/active_admin.js > temp_file.tmp
-echo '//= require activeadmin_mongoid_blog' > app/assets/javascripts/active_admin.js
-cat temp_file.tmp >> app/assets/javascripts/active_admin.js
+echo '//= require activeadmin_mongoid_blog' >> app/assets/javascripts/active_admin.js
 
 # Tweak active_admin.css.scss
 cat app/assets/stylesheets/active_admin.css.scss > temp_file.tmp
 echo '//= require activeadmin_mongoid_blog' > app/assets/stylesheets/active_admin.css.scss
 cat temp_file.tmp >> app/assets/stylesheets/active_admin.css.scss
-
-
 rm temp_file.tmp
 
 
 echo "\n\n\n"
-echo "New project created. You can create first admin user:"
-echo "  $ rails c\n  >> AdminUser.create :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'"
-
+echo "$ rails c"
+echo ">> AdminUser.create :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'"
+echo "\n\n\n"
