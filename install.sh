@@ -78,7 +78,7 @@ echo '//= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap
-'  > app/assets/stylesheets/application.js
+'  > app/assets/javascripts/application.js
 
 
 echo "\n\n\n"
