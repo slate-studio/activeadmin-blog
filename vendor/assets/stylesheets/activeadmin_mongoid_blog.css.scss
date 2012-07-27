@@ -10,4 +10,16 @@
   #post_category_ids { width:76%; }
   #post_draft { width:160px; }
   #post_date { width:138px; }
-} 
+}
+
+#posts.index_table {
+  tr th:first-child, tr th:last-child { width:118px; }
+}
+
+#categories.index_table {
+  tr th:last-child { width:118px; }
+}
+
+.admin_categories .category_posts {
+  tr th:first-child, tr th:last-child { width:118px; } 
+}

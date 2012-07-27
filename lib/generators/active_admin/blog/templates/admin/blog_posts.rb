@@ -15,33 +15,28 @@ ActiveAdmin.register BlogPost, :as => "Post" do
   end
 
   index do
-    # Hiding this column until get support of images
-    #column("") do |p| # Thumbnail
-    #  url = p.featured_image.admin_thumb.url
-    #  if url.nil?
-    #    url = "http://placehold.it/60x40?text=IMG"
-    #  end
-    #  image_tag(url, :alt => p.title, :size=>"60x40")
-    #end
+    column("") do |p| # Blog post featured image thumbnail
+      url = p.featured_image.thumb.url
+      if url.nil?
+        url = "http://placehold.it/118x100&text=NO+IMAGE"
+      end
+      image_tag(url, :alt => p.title, :size=>"118x100")
+    end
     
     column("Title") do |p|
-      html = "<strong>#{p.title}</strong>"
-      html.html_safe
-    end
-    
-    column("Details") do |p|
-      html = ""
+      html = "<p><strong>#{p.title}</strong><br/><em>#{truncate(p.excerpt, :length => 90)}</em></p>"
+      
+      if not p.tags.empty?
+        html << "Tags: <em>" + p.tags.gsub(',', ', ') + "</em><br/>"
+      end
+      
       if p.categories.size > 0
         html << "Published in: " + p.categories.collect{|c| link_to(c.name, admin_category_path(c))}.join(", ")
-        html << "<br/>"
-      end
-      if not p.tags.empty?
-        html << "Tags: <em>" + p.tags.gsub(',', ', ') + "</em>"
       end
       html.html_safe
     end
     
-    column("Date") do |p|
+    column("Status") do |p|
       """#{p.date.to_s.gsub('-', '/')}<br/>
          <i>#{p.draft ? 'Draft' : 'Published'}</i>""".html_safe
     end
@@ -58,17 +53,29 @@ ActiveAdmin.register BlogPost, :as => "Post" do
                         :input_html => { :class => "redactor" }
     end
     f.inputs "Details" do
+      
+      if f.object.has_featured_image?
+        featured_image_hint = image_tag f.object.featured_image.thumb.url, :size => "118x100"
+      else
+        featured_image_hint = ""
+      end
+      f.input :featured_image, :hint => featured_image_hint
+
+      if f.object.has_featured_image?
+        f.input :remove_featured_image, :as => :boolean
+      end
+
       unless f.object.new?
         f.input :permalink
       end
-
-      f.input :date,  :input_html => { :class => "datepicker" }
 
       f.input :draft, :as             => :select,
                       :label          => "State",
                       :collection     => [["draft", "true"], ["published", "false"]],
                       :include_blank  => false,
                       :input_html     => { :class => "select2" }
+
+      f.input :date,  :input_html => { :class => "datepicker", :placeholder => "Click field to pick date" }
 
       categories = BlogCategory.all
       if categories.size > 0

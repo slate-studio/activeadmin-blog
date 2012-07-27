@@ -14,11 +14,13 @@
     <% end %>
   </p>
 
-  <!-- FEATURED IMAGE LINK --!>
+  <!-- FEATURED IMAGE LINK -->
   <% if post.has_featured_image? %>
-    <a href="<%= blog_post_path(post) %>" title="Read More">
-      <%= image_tag post.featured_image_url, :alt=>post.title %>
-    </a>
+    <p>
+      <a href="<%= blog_post_path(post) %>" title="Read More">
+        <%= image_tag post.featured_image_url, :alt=>post.title %>
+      </a>
+    </p>
   <% end %>
 
   <!-- EXCERPT -->

@@ -14,8 +14,6 @@ class BlogPost
   field :draft, :type => Boolean, :default => true
   field :date,  :type => Date
 
-  field :featured_image # This is temporary value until redactor with file uploading functionality is off
-
   # Validations
   validates_presence_of :title
   validates_uniqueness_of :title
@@ -23,6 +21,7 @@ class BlogPost
   # Features
   slug            :title, :as => :permalink, :permanent => true
   search_in       :title, :content, :tags
+  mount_uploader  :featured_image, RedactorRailsPictureUploader
   paginates_per 6
 
   # Relations
@@ -35,11 +34,7 @@ class BlogPost
 
   # Helpers
   def has_featured_image?
-    false
-  end
-
-  def tags?
-    tags.size > 0
+    not featured_image.to_s.empty?
   end
 
   def excerpt
