@@ -20,6 +20,7 @@ Add these gems to Gemfile and run `bundle` command:
     gem 'mongoid'
     gem 'devise'
     gem 'activeadmin-mongoid'
+    gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
     gem 'activeadmin-mongoid-blog'
     gem 'therubyracer'
     gem 'twitter-bootstrap-rails'
@@ -44,15 +45,15 @@ At this point **activeadmin** should be ready to work. Run `rails s` and check o
 
 ### Setup activeadmin-mongoid-blog
 
+As blog post editor `redactor.js` is used. It comes with a image uploading featured supported by **carrierwave**, install `Picture` model with command:
+
+    $ rails g redactor:install
+
 Install blog models, admin files, routes and blog controller, replace `blog` value with a prefix you want the blog be accessible at (e.g. `http://localhost:3000/blog`):
 
     $ rails g active_admin:blog:install blog
 
 Run `bundle` to install new gems.
-
-As blog post editor `redactor.js` is used. It comes with a image uploading featured supported by **carrierwave**, install `Picture` model with command:
-
-    $ rails g redactor:install
 
 Add to your `active_admin.js.coffee`:
 
