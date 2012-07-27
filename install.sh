@@ -97,13 +97,13 @@ production:
 rm -Rfd db/migrate
 
 
-# Fix seed.rb file to generate first admin user
+# Fix seeds.rb file to generate first admin user
 echo 'puts "EMPTY THE MONGODB DATABASE"
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 
 puts "SETTING UP DEFAULT ADMIN USER"
 AdminUser.create!(:email => "admin@example.com", :password => "password", :password_confirmation => "password")
-' > db/seed.rb
+' > db/seeds.rb
 
 
 # Create default admin user
