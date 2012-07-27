@@ -44,11 +44,13 @@ rails g bootstrap:install
 # Tweak active_admin.js
 echo '//= require activeadmin_mongoid_blog' >> app/assets/javascripts/active_admin.js
 
+
 # Tweak active_admin.css.scss
 cat app/assets/stylesheets/active_admin.css.scss > temp_file.tmp
 echo '//= require activeadmin_mongoid_blog' > app/assets/stylesheets/active_admin.css.scss
 cat temp_file.tmp >> app/assets/stylesheets/active_admin.css.scss
 rm temp_file.tmp
+
 
 # Tweak application.css.scss
 echo '/*
@@ -69,6 +71,7 @@ echo '/*
 }
 .pagination span:first-child, .pagination .first a { border-left-width:1px; }' > app/assets/stylesheets/application.css
 
+
 # Tweak application.js
 echo '//= require jquery
 //= require jquery_ujs
@@ -77,9 +80,32 @@ echo '//= require jquery
 '  > app/assets/javascripts/application.js
 
 
-echo "\n\n\n"
-echo "$ rails c"
-echo ">> AdminUser.create :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'"
-echo "\n\n\n"
+# Fix default mongoid.yml
+echo 'development:
+  host: localhost
+  database: '$project_name'
 
+test:
+  host: localhost
+  database: '$project_name'_test
+
+production:
+  uri: <%= ENV["MONGO_URL"] %>' > config/mongoid.yml
+
+
+# Remove migrations, we don't need them with mongoid
+rm -Rfd db/migrate
+
+
+# Fix seed.rb file to generate first admin user
+echo 'puts "EMPTY THE MONGODB DATABASE"
+Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
+
+puts "SETTING UP DEFAULT ADMIN USER"
+AdminUser.create!(:email => "admin@example.com", :password => "password", :password_confirmation => "password")
+' > db/seed.rb
+
+
+# Create default admin user
+rake db:seed
 

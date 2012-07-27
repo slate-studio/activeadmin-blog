@@ -106,6 +106,23 @@ In `application.css` include:
     }
     .pagination span:first-child, .pagination .first a { border-left-width:1px; }
 
+### Heroku
+
+Configure local and production `config/mongoid.yml` settings to look like this:
+
+    development:
+      host: localhost
+      database: supercaliblog
+
+    test:
+      host: localhost
+      database: supercaliblog_test
+
+    production:
+      uri: <%= ENV["MONGO_URL"] %>
+
+Create an S3 bucket for redactor image uploading feature and configure carrierwave.
+
 ### The End
 
 
