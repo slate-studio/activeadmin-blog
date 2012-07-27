@@ -21,6 +21,9 @@ Add these gems to Gemfile and run `bundle` command:
     gem 'devise'
     gem 'activeadmin-mongoid'
     gem 'activeadmin-mongoid-blog'
+    gem 'therubyracer'
+    gem 'twitter-bootstrap-rails'
+
 
 Run generators to and check settings in `/config/mongoid.yml`, `/config/initializers/active_admin.rb`:
 

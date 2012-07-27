@@ -20,12 +20,13 @@ cd $project_name
 
 # Gems
 echo '
-    gem "bson_ext"
-    gem "mongoid"
-    gem "devise"
-    gem "activeadmin-mongoid"
-    gem "activeadmin-mongoid-blog"
-    gem "twitter-bootstrap-rails"' >> Gemfile
+gem "bson_ext"
+gem "mongoid"
+gem "devise"
+gem "activeadmin-mongoid"
+gem "activeadmin-mongoid-blog"
+gem "therubyracer"
+gem "twitter-bootstrap-rails"' >> Gemfile
 
 
 bundle
