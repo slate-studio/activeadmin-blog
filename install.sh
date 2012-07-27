@@ -9,7 +9,7 @@
 #   select2 plugins. Could be useful for almost every activeadmin based project.
 # 
 # Installation:
-#   export $project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
+#   export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
 
 
 set -e
