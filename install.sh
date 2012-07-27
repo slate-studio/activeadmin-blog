@@ -14,20 +14,34 @@
 
 set -e
 
-rails new $project_name -T -O
+rails new $project_name -T -O --skip-bundle
 cd $project_name
 
 
 # Gems
 echo '
+# Activeadmin
 gem "bson_ext"
 gem "mongoid"
 gem "devise"
 gem "activeadmin-mongoid"
+
+# Blog
+gem "mongoid_slug"
+gem "mongoid_search"
+gem "nokogiri"
+gem "select2-rails"
 gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
+gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
+gem "mini_magick"
+gem "activeadmin-mongoid-reorder"
 gem "activeadmin-mongoid-blog"
+
+# Default styles
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
+
+# Assets
 gem "aws-s3"
 gem "fog"
 gem "asset_sync"
