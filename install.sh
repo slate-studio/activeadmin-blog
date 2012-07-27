@@ -24,6 +24,7 @@ gem "bson_ext"
 gem "mongoid"
 gem "devise"
 gem "activeadmin-mongoid"
+gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
 gem "activeadmin-mongoid-blog"
 gem "therubyracer"
 gem "twitter-bootstrap-rails"' >> Gemfile
@@ -35,13 +36,9 @@ bundle
 rails g mongoid:config
 rails g devise:install
 rails g active_admin:install
-rails g active_admin:blog:install blog
-
-
-bundle
-
-
 rails g redactor:install
+rails g active_admin:blog:install blog
+rails g bootstrap:install
 
 
 # Tweak active_admin.js
@@ -53,9 +50,7 @@ echo '//= require activeadmin_mongoid_blog' > app/assets/stylesheets/active_admi
 cat temp_file.tmp >> app/assets/stylesheets/active_admin.css.scss
 rm temp_file.tmp
 
-
-rails g bootstrap:install
-
+# Tweak application.css.scss
 echo '/*
  *= require bootstrap_and_overrides
  *= require_self
@@ -74,6 +69,7 @@ echo '/*
 }
 .pagination span:first-child, .pagination .first a { border-left-width:1px; }' > app/assets/stylesheets/application.css
 
+# Tweak application.js
 echo '//= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
