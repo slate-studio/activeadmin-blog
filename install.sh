@@ -57,6 +57,6 @@ rm temp_file.tmp
 
 
 echo "\n\n\n"
-echo "New rails project '" + project_name + "' created. Now create new admin user:"
+echo "New project created. You can create first admin user:"
 echo "  $ rails c\n  >> AdminUser.create :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'"
 
