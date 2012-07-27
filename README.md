@@ -2,9 +2,13 @@
 
 Blog app on the top of activeadmin and mongoid, using redactor and select2 plugins. Could be useful for almost every activeadmin based project.
 
+### Quick new blog
+
+    curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
+
 ### Start a new rails project
 
-    $ rails new appname --skip-active-record
+    $ rails new appname -T -O
 
 ### Setup and configure ActiveAdmin
 
@@ -12,9 +16,9 @@ Add these gems to Gemfile and run `bundle` command:
 
     gem 'bson_ext'
     gem 'mongoid'
+    gem 'devise'
     gem 'activeadmin-mongoid'
     gem 'activeadmin-mongoid-blog'
-    gem 'devise'
 
 Run generators to and check settings in `/config/mongoid.yml`, `/config/initializers/active_admin.rb`:
 
@@ -43,7 +47,7 @@ Run `bundle` to install new gems.
 
 As blog post editor `redactor.js` is used. It comes with a image uploading featured supported by **carrierwave**, install `Picture` model with command:
 
-    $ rails generate redactor:install
+    $ rails g redactor:install
 
 Add to your `active_admin.js.coffee`:
 
@@ -60,3 +64,5 @@ Install default views templates to `/app/views/blog`:
     $ rails g active_admin:blog:views blog
 
 ### The End
+
+
