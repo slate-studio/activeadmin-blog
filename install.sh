@@ -150,11 +150,19 @@ echo 'CarrierWave.configure do |config|
 end' > config/initializers/carrierwave.rb
 
 
+# Fix production assets to include all required files
+mv config/environments/production.rb config/environments/production-old.rb
+sed '/# config.assets.precompile += %w( search.js )/ a\
+  config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor-rails/css/style.css"]' config/environments/production-old.rb 1> config/environments/production.rb
+rm config/environments/production-old.rb
+
+
 echo ""
 echo "Please make sure you've set Heroku environment settings:"
 echo "  FOG_MEDIA_DIRECTORY"
 echo "  AWS_ACCESS_KEY_ID"
 echo "  AWS_SECRET_ACCESS_KEY"
+echo "  MONGO_URL"
 echo ""
 
 
