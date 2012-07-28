@@ -161,7 +161,13 @@ Make sure you've set Heroku environtment variables:
     FOG_MEDIA_DIRECTORY
     AWS_ACCESS_KEY_ID
     AWS_SECRET_ACCESS_KEY
+    MONGO_URL
 
+#### Production assets
+
+Add the following line to `config/environments/production.rb`:
+
+    config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor-rails/css/style.css"]
 
 
 ### The End
