@@ -35,9 +35,10 @@ gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
 gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
 gem "mini_magick"
 gem "activeadmin-mongoid-reorder"
+gem "activeadmin-mongoid-settings"
 gem "activeadmin-mongoid-blog"
 
-# Default styles
+# Bootstrap styles
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
 
@@ -54,20 +55,10 @@ bundle
 rails g mongoid:config
 rails g devise:install
 rails g active_admin:install
+rails g activeadmin_settings:install
 rails g redactor:install
 rails g active_admin:blog:install blog
 rails g bootstrap:install
-
-
-# Tweak active_admin.js
-echo '//= require activeadmin_mongoid_blog' >> app/assets/javascripts/active_admin.js
-
-
-# Tweak active_admin.css.scss
-cat app/assets/stylesheets/active_admin.css.scss > temp_file.tmp
-echo '//= require activeadmin_mongoid_blog' > app/assets/stylesheets/active_admin.css.scss
-cat temp_file.tmp >> app/assets/stylesheets/active_admin.css.scss
-rm temp_file.tmp
 
 
 # Tweak application.css.scss
@@ -120,7 +111,7 @@ echo 'puts "EMPTY THE MONGODB DATABASE"
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 
 puts "SETTING UP DEFAULT ADMIN USER"
-AdminUser.create!(:email => "admin@example.com", :password => "password", :password_confirmation => "password")
+Rake::Task['activeadmin_settings:create_admin'].invoke
 ' > db/seeds.rb
 
 

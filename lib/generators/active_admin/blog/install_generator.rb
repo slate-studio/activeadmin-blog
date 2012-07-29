@@ -28,11 +28,28 @@ module ActiveAdmin
           route "get '/#{file_name}/posts/:slug' => 'blog#post',  :as => :blog_post"
         end
 
+        def add_assets
+          if File.exist?('app/assets/javascripts/active_admin.js')
+            insert_into_file  "app/assets/javascripts/active_admin.js",
+                              "//= require activeadmin_mongoid_blog\n", :after => "base\n"
+          else
+            puts "It doesn't look like you've installed activeadmin: active_admin.js is missing.\nPlease install it and try again."
+          end
+
+          if File.exist?('app/assets/stylesheets/active_admin.css.scss')
+            insert_into_file  "app/assets/stylesheets/active_admin.css.scss",
+                              "//= require activeadmin_mongoid_blog\n", :before => "// Active Admin CSS Styles\n"
+          else
+            puts "It doesn't look like you've installed activeadmin: active_admin.scss is missing.\nPlease install it and try again."
+          end
+        end
+
         def add_gems
           gem "mongoid_slug"
           gem "mongoid_search"
           gem "nokogiri"
           gem "activeadmin-mongoid-reorder"
+          gem "activeadmin-settings"
           gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
           gem "carrierwave-mongoid", :require => 'carrierwave/mongoid'
           gem "mini_magick"
