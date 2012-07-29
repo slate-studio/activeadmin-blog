@@ -22,54 +22,47 @@ This command creates new rails project fully configured and ready for Heroku dep
 
 Add these gems to Gemfile and run `bundle` command:
 
+    # Activeadmin
     gem "bson_ext"
     gem "mongoid"
     gem "devise"
     gem "activeadmin-mongoid"
+
+    # Activeadmin Mongoid Blog
+    gem "mongoid_slug"
+    gem "mongoid_search"
+    gem "nokogiri"
+    gem "select2-rails"
     gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
+    gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
+    gem "mini_magick"
+    gem "activeadmin-mongoid-reorder"
+    gem "activeadmin-settings"
     gem "activeadmin-mongoid-blog"
+
+    # Bootstrap styles
     gem "therubyracer"
     gem "twitter-bootstrap-rails"
+
+    # Assets
     gem "aws-s3"
     gem "fog"
     gem "asset_sync"
 
-Run generators to and check settings in `/config/mongoid.yml`, `/config/initializers/active_admin.rb`:
+Run following generators:
 
     $ rails g mongoid:config
     $ rails g devise:install
     $ rails g active_admin:install
-
-Check that the generated `/config/initializers/devise.rb` file requires mongoid orm. You should see a line like this:
-
-    require 'devise/orm/mongoid'
-
-Create the activeadmin user:
-
-    $ rails c
-    >> AdminUser.create :email => 'admin@example.com', :password => 'password', :password_confirmation => 'password'
-
-At this point **activeadmin** should be ready to work. Run `rails s` and check out `http://localhost:3000/admin`.
-
-### Setup activeadmin-mongoid-blog
-
-As blog post editor `redactor.js` is used. It comes with a image uploading featured supported by **carrierwave**, install `Picture` model with command:
-
     $ rails g redactor:install
-
-Install blog models, admin files, routes and blog controller, replace `blog` value with a prefix you want the blog be accessible at (e.g. `http://localhost:3000/blog`):
-
+    $ rails g activeadmin_settings:install
     $ rails g active_admin:blog:install blog
 
-Run `bundle` to install new gems.
+Create default admin user for activeadmin:
 
-Add to your `active_admin.js.coffee`:
+    rake activeadmin:create_admin
 
-    #= require activeadmin_mongoid_blog
-
-Add to your `active_admin.css.scss`:
-
-    //= require activeadmin_mongoid_blog
+Run `rails s` blog should be accesible at `http://localhost:3000/blog`
 
 ### Customizing blog views
 

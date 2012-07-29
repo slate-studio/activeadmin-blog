@@ -35,7 +35,7 @@ gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
 gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
 gem "mini_magick"
 gem "activeadmin-mongoid-reorder"
-gem "activeadmin-mongoid-settings"
+gem "activeadmin-settings"
 gem "activeadmin-mongoid-blog"
 
 # Bootstrap styles
@@ -59,6 +59,17 @@ rails g activeadmin_settings:install
 rails g redactor:install
 rails g active_admin:blog:install blog
 rails g bootstrap:install
+
+
+# Add blog settings
+echo '\nBlog Title:
+  description:    You can change blog title with this setting
+  default_value:  <%= Rails.application.class.parent_name %>
+
+Delivered By:
+  description:    Link in the footer of the website
+  default_value:  (Slate Studio) http://slatestudio.com
+  type:           link' >> config/activeadmin_settings.yml
 
 
 # Tweak application.css.scss
@@ -111,7 +122,7 @@ echo 'puts "EMPTY THE MONGODB DATABASE"
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 
 puts "SETTING UP DEFAULT ADMIN USER"
-Rake::Task['activeadmin_settings:create_admin'].invoke
+Rake::Task["activeadmin:create_admin"].invoke
 ' > db/seeds.rb
 
 
