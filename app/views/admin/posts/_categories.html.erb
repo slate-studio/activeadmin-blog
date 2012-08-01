@@ -1,6 +1,6 @@
-<ul>
+<ul id="blog_categories_list">
   <% categories.each do |c| %>
-    <li>
+    <li id="category_<%= c.id %>">
       <span>
         <%= link_to c.name, admin_category_path(c) %>
         <% if c.blog_posts.size > 0 %>(<%= c.blog_posts.size %>)<% end %>

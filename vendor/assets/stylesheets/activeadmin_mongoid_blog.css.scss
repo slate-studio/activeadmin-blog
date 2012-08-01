@@ -26,16 +26,27 @@
 
 .admin_posts {
   #categories_sidebar_section {
-    margin-top:36px;
   }
 }
 
 #categories_sidebar_section {
+  margin-top:36px;
   ul {
     margin:0px; padding:0px;
     list-style:none;
   }
   .action-buttons {
     float:right;
+  }
+}
+
+#category_posts_page {
+  margin:0px;
+  padding:0px;
+  list-style:none;
+
+  .links {
+    height:22px;
+    margin-bottom:14px;
   }
 }
