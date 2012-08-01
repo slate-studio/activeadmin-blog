@@ -163,6 +163,10 @@ Add the following line to `config/environments/production.rb`:
     config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor-rails/css/style.css"]
 
 
+## TODO
+
+- Make sidebar category widget, so no nested menus for blog;
+- Make settings and admin_user a different tabs on the same settings page;
+- Admin blog post search;
+
 ### The End
-
-

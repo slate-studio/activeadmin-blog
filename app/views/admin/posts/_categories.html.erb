@@ -1,0 +1,16 @@
+<ul>
+  <% categories.each do |c| %>
+    <li>
+      <span>
+        <%= link_to c.name, admin_category_path(c) %>
+        <% if c.blog_posts.size > 0 %>(<%= c.blog_posts.size %>)<% end %>
+      </span>
+      <span class="action-buttons">
+        <%= link_to "Edit", edit_admin_category_path(c) %>
+      </span>
+    </li>
+  <% end %>
+</ul>
+
+<br/>
+<%= link_to "New Category", new_admin_category_path %>

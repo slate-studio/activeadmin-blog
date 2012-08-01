@@ -3,6 +3,10 @@
 #= require activeadmin_reorder_table
 
 $ ->
+  # Fix header menu for category pages
+  if $('.admin_categories').length > 0
+    $('#header #blog').addClass("current")
+  
   # Enable redactor
   $('.redactor').redactor 
     imageUpload:  "/redactor_rails/pictures"

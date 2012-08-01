@@ -1,7 +1,5 @@
 ActiveAdmin.register BlogPost, :as => "Post" do
-  menu  :parent   => "Blog",
-        :label    => "All Posts",
-        :priority => 1
+  menu :label => "Blog"
 
   actions :new, :create, :index, :update, :edit, :destroy
 
@@ -42,6 +40,10 @@ ActiveAdmin.register BlogPost, :as => "Post" do
     end
 
     default_actions
+  end
+
+  sidebar :categories, :only => :index do
+    render :partial => "categories", :locals => { :categories => BlogCategory.all }
   end
 
   form do |f|

@@ -23,3 +23,19 @@
 .admin_categories .category_posts {
   tr th:first-child, tr th:last-child { width:118px; } 
 }
+
+.admin_posts {
+  #categories_sidebar_section {
+    margin-top:36px;
+  }
+}
+
+#categories_sidebar_section {
+  ul {
+    margin:0px; padding:0px;
+    list-style:none;
+  }
+  .action-buttons {
+    float:right;
+  }
+}

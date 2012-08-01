@@ -1,0 +1,26 @@
+<fieldset class="inputs"><legend><span>Details</span></legend><ol>
+  <%= f.input :name, :required => true %>
+  <%= f.input :permalink %>
+</ol></fieldset>
+
+<fieldset class="buttons">
+<ol>
+  <li class="commit button">
+    <input class="update" id="proposal_submit" name="commit" type="submit"
+     value="<% if f.object.new? %>Create<% else %>Update<% end %> Category">
+  </li>
+  <li class="cancel">
+    <a href="<%= admin_posts_path %>">Cancel</a>
+  </li>
+<!--  
+  <% if not f.object.new? %>
+  <li style="float:right;">
+    <%= link_to "Delete Category", resource_path(f.object),
+          :method => :delete,
+          :confirm => "Are you sure, you want to delte this category?",
+          :class => "delete button" %>
+  </li>
+  <% end %>
+-->
+</ol>
+</fieldset>
