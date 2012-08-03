@@ -9,6 +9,8 @@ Replace `new_blog` name with the real one and run:
 
     export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
 
+**IMPORTANT**: Make sure local mongodb instance is running.
+
 This command creates new rails project fully configured and ready for Heroku deploy.
 
 
