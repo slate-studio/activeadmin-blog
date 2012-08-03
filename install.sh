@@ -63,14 +63,15 @@ rails g bootstrap:install
 
 
 # Add blog settings
-echo '\nBlog Title:
-  description:    You can change blog title with this setting
-  default_value:  <%= Rails.application.class.parent_name %>
+echo '\nGeneral:
+  Blog Title:
+    description:    You can change blog title with this setting
+    default_value:  <%= Rails.application.class.parent_name %>
 
-Delivered By:
-  description:    Link in the footer of the website
-  default_value:  (Slate Studio) http://slatestudio.com
-  type:           link' >> config/activeadmin_settings.yml
+  Delivered By:
+    description:    Link in the footer of the website
+    default_value:  (Slate Studio) http://slatestudio.com
+    type:           link' >> config/activeadmin_settings.yml
 
 
 # Tweak application.css.scss
