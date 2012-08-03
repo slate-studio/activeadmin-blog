@@ -1,3 +1,4 @@
+<% if categories.size > 0 %>
 <ul id="blog_categories_list">
   <% categories.each do |c| %>
     <li id="category_<%= c.id %>">
@@ -11,6 +12,7 @@
     </li>
   <% end %>
 </ul>
-
 <br/>
+<% end %>
+
 <%= link_to "New Category", new_admin_category_path %>
