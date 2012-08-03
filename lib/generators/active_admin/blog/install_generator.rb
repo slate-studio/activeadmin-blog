@@ -46,12 +46,12 @@ module ActiveAdmin
 
         def add_gems
           gem "mongoid_slug"
-          gem "mongoid_search"
+          gem "mongoid_search", "~> 0.2.8"
           gem "nokogiri"
           gem "activeadmin-mongoid-reorder"
           gem "activeadmin-settings"
           gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
-          gem "carrierwave-mongoid", :require => 'carrierwave/mongoid'
+          gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
           gem "mini_magick"
           gem "select2-rails"
         end
