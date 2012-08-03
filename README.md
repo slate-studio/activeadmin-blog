@@ -5,6 +5,8 @@ Blog app on the top of activeadmin and mongoid, using redactor and select2 plugi
 
 ## Quick install
 
+**IMPORTANT**: Make sure local mongodb instance is running.
+
 Replace `new_blog` name with the real one and run:
 
     export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh

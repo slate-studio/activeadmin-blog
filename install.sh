@@ -29,7 +29,7 @@ gem "activeadmin-mongoid"
 # Blog
 gem "mongoid_slug"
 #gem "mongoid_search" this uses mongoid 3.x
-gem 'mongoid_search', '~> 0.2.8'
+gem "mongoid_search", "~> 0.2.8"
 gem "nokogiri"
 gem "select2-rails"
 gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
