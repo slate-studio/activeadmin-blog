@@ -27,8 +27,7 @@ gem "devise"
 gem "activeadmin-mongoid"
 
 # Blog
-gem "activeadmin-settings", :path => "../_lib/activeadmin-settings"
-gem "activeadmin-blog", :path => "../_lib/activeadmin-blog"
+gem "activeadmin-blog"
 
 # Bootstrap styles
 gem "therubyracer"
