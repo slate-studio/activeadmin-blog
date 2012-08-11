@@ -1,12 +1,11 @@
 ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
   menu :label => "Blog"
 
-  actions :new, :create, :index, :update, :edit, :destroy
+  actions :all, :except => [:show]
 
   # Scopes
-  scope :all, :default => true
-  scope :drafts
-  scope :published
+  scope :published, :default => true
+  scope :ideas
 
   controller do
     defaults :finder => :find_by_permalink
@@ -36,14 +35,14 @@ ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
     
     column("Status") do |p|
       """#{p.date.to_s.gsub('-', '/')}<br/>
-         <i>#{p.draft ? 'Draft' : 'Published'}</i>""".html_safe
+         <i>#{p.published ? 'Published' : 'Not Finished'}</i>""".html_safe
     end
 
     default_actions
   end
 
   sidebar :categories, :only => :index do
-    render :partial => "categories", :locals => { :categories => BlogCategory.all }
+    render :partial => "categories", :locals => { :categories => ActiveadminBlog::BlogCategory.all }
   end
 
   form do |f|
@@ -71,15 +70,15 @@ ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
         f.input :permalink
       end
 
-      f.input :draft, :as             => :select,
-                      :label          => "State",
-                      :collection     => [["draft", "true"], ["published", "false"]],
-                      :include_blank  => false,
-                      :input_html     => { :class => "select2" }
+      f.input :published, :as             => :select,
+                          :label          => "State",
+                          :collection     => [["published", "true"], ["not finished", "false"]],
+                          :include_blank  => false,
+                          :input_html     => { :class => "select2" }
 
       f.input :date,  :input_html => { :class => "datepicker", :placeholder => "Click field to pick date" }
 
-      categories = BlogCategory.all
+      categories = ActiveadminBlog::BlogCategory.all
       if categories.size > 0
         f.input :categories,  :as             => :select,
                               :label          => "Published in",
@@ -96,7 +95,7 @@ ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
   end
 
   collection_action :tags, :method => :get do
-    tags    = BlogPost.all.collect{ |p| p.tags }.join(",").split(',').uniq
+    tags    = ActiveadminBlog::BlogPost.all.collect{ |p| p.tags }.join(",").split(',').uniq
     render :json => tags
   end
 end

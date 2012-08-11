@@ -9,9 +9,9 @@ class ActiveadminBlog::BlogPost
   # Fields
   field :title
   field :content
-  field :tags,  :default => ""
-  field :draft, :type => Boolean, :default => true
-  field :date,  :type => Date
+  field :tags,      :default => ""
+  field :published, :type => Boolean, :default => false
+  field :date,      :type => Date
 
   # Validations
   validates_presence_of :title
@@ -28,8 +28,8 @@ class ActiveadminBlog::BlogPost
 
   # Scopes
   default_scope order_by(:date => :desc)
-  scope         :drafts,    where(draft: true)
-  scope         :published, where(draft: false)
+  scope         :ideas,     where(published: false)
+  scope         :published, where(published: true)
 
   # Helpers
   def has_featured_image?
@@ -73,5 +73,9 @@ class ActiveadminBlog::BlogPost
     self.all.collect do |p|
       [p.date.month, p.date.year]
     end.uniq
+  end
+
+  def self.tagged_with(tag)
+    self.published
   end
 end

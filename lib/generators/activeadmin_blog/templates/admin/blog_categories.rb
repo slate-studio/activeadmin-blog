@@ -1,7 +1,7 @@
 ActiveAdmin.register ActiveadminBlog::BlogCategory, :as => "Category" do
   menu false
 
-  actions :show, :new, :edit, :create, :update, :destroy
+  actions :all, :except => [:index]
 
   controller do
     def create
@@ -57,7 +57,7 @@ ActiveAdmin.register ActiveadminBlog::BlogCategory, :as => "Category" do
             
             t.column("Status") do |p|
               """#{p.date.to_s.gsub('-', '/')}<br/>
-                 <i>#{p.draft ? 'Draft' : 'Published'}</i>""".html_safe
+                 <i>#{p.published ? 'Published' : 'Not Finished'}</i>""".html_safe
             end
     
             t.column "" do |p|
@@ -73,7 +73,7 @@ ActiveAdmin.register ActiveadminBlog::BlogCategory, :as => "Category" do
   end
 
   sidebar :categories, :only => :show do
-    render :partial => "admin/posts/categories", :locals => { :categories => BlogCategory.all }
+    render :partial => "admin/posts/categories", :locals => { :categories => ActiveadminBlog::BlogCategory.all }
   end
 
   form do |f|

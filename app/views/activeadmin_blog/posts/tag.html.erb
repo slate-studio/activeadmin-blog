@@ -1,0 +1,9 @@
+<div class="container">
+  <%= render :partial => "header" %>
+
+  <%= render :partial => "post", :collection => @posts %>
+
+  <%= paginate @posts %>
+
+  <%= render :partial => "footer" %>
+</div>

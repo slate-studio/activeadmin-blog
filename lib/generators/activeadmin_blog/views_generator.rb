@@ -3,7 +3,7 @@ module ActiveadminBlog
     class ViewsGenerator < Rails::Generators::NamedBase
       desc << "Description:\n    Copies blog templates to your application."
 
-      source_root File.expand_path('../../../../app/views/blog', __FILE__)
+      source_root File.expand_path('../../../../app/views/activeadmin_blog/blog', __FILE__)
 
       def copy_default_views
         filename_pattern = File.join self.class.source_root, "*.html.erb"

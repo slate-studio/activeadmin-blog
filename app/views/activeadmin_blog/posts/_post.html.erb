@@ -8,7 +8,7 @@
     <% if post.categories.size > 0 %>
       <ul>
         <% post.categories.each do |c| %>
-        <li><a href='<% blog_path() + "?category=#{c.name}"%>' title="<%= c.name %>"><%= c.name %></a></li>
+        <li><a href="<%= blog_category_path(c) %>" title="<%= c.name %>"><%= c.name %></a></li>
         <% end %>
       </ul>
     <% end %>

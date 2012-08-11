@@ -11,7 +11,7 @@
       <% if @post.categories.size > 0 %>
         <ul>
           <% @post.categories.each do |c| %>
-          <li><a href='<% blog_path() + "?category=#{c.name}"%>' title="<%= c.name %>"><%= c.name %></a></li>
+          <li><a href="<%= blog_category_path(c) %>" title="<%= c.name %>"><%= c.name %></a></li>
           <% end %>
         </ul>
       <% end %>
@@ -25,7 +25,7 @@
       <span>Tags:</span>
       <ul>
         <% @post.tags.split(',').each do |t| %>
-          <li><%= link_to t, blog_path() + "?tag=#{t}" %></li>
+          <li><%= link_to t, blog_tag_path(t) %></li>
         <% end %>
       </ul>
     <% end %>

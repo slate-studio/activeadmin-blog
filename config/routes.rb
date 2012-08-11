@@ -1,5 +1,9 @@
 ActiveadminBlog::Engine.routes.draw do
-  get '/'             => 'blog#index', :as => :blog
-  get '/feed'         => 'blog#feed',  :as => :blog_rss_feed
-  get '/posts/:slug'  => 'blog#post',  :as => :blog_post
+  get '/'                 => 'posts#index',     :as => :blog
+  get '/:slug'            => 'posts#category',  :as => :blog_category
+  get '/search'           => 'posts#search',    :as => :blog_search
+  get '/archive/:y/:m'    => 'posts#archive',   :as => :blog_archive
+  get '/tags/:tag'        => 'posts#tag',       :as => :blog_tag
+  get '/posts/:slug'      => 'posts#show',      :as => :blog_post
+  get '/feed'             => 'posts#feed',      :as => :blog_rss_feed
 end
