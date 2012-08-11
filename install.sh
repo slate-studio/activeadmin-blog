@@ -2,14 +2,13 @@
 
 
 # === activeadmin-mongoid-blog ===
-# https://github.com/alexkravets/activeadmin-mongoid-blog
+# https://github.com/alexkravets/activeadmin-blog
 #
 # Description:
-#   Blog app on the top of activeadmin and mongoid, using redactor and
-#   select2 plugins. Could be useful for almost every activeadmin based project.
+#   Blog app on the top of activeadmin and mongoid.
 # 
 # Installation:
-#   export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
+#   export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-blog/master/install.sh | sh
 
 
 set -e
