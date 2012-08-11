@@ -27,14 +27,6 @@ gem "devise"
 gem "activeadmin-mongoid"
 
 # Blog
-gem "mongoid_slug"
-#gem "mongoid_search" this uses mongoid 3.x
-gem "mongoid_search", "~> 0.2.8"
-gem "nokogiri"
-gem "select2-rails"
-gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
-gem "mini_magick"
-gem "activeadmin-mongoid-reorder"
 gem "activeadmin-settings"
 gem "activeadmin-mongoid-blog"
 
@@ -43,8 +35,6 @@ gem "therubyracer"
 gem "twitter-bootstrap-rails"
 
 # Assets
-gem "aws-s3"
-gem "fog"
 gem "asset_sync"
 ' >> Gemfile
 
