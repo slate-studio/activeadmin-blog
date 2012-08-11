@@ -1,0 +1,5 @@
+Blog app for active admin is now installed. Please run bundle to install missing gems. Then run settings installer:
+
+    rails g activeadmin_settings:install
+
+Thanks for installing activeadmin-blog!

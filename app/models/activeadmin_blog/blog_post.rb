@@ -1,11 +1,10 @@
-class BlogPost
+class ActiveadminBlog::BlogPost
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Mongoid::Search
 
   include ActionView::Helpers::TextHelper
-  require 'nokogiri'
 
   # Fields
   field :title
@@ -21,11 +20,11 @@ class BlogPost
   # Features
   slug            :title, :as => :permalink, :permanent => true
   search_in       :title, :content, :tags
-  mount_uploader  :featured_image, RedactorRailsPictureUploader
+  mount_uploader  :featured_image, ActiveadminSettings::RedactorPictureUploader
   paginates_per 6
 
   # Relations
-  has_and_belongs_to_many :categories, :class_name => "BlogCategory"
+  has_and_belongs_to_many :categories, :class_name => "ActiveadminBlog::BlogCategory"
 
   # Scopes
   default_scope order_by(:date => :desc)
@@ -52,7 +51,7 @@ class BlogPost
 
   # Class methods
   def self.published_in_category(category_slug)
-    category = BlogCategory.find_by_permalink!(category_slug)
+    category = ActiveadminBlog::BlogCategory.find_by_permalink!(category_slug)
     category.blog_posts.published
   end
 
@@ -61,9 +60,9 @@ class BlogPost
       start_date = Date.new(year, month, 1)
       end_date   = start_date + 1.month
     rescue
-      BlogPost.published
+      self.published
     end
-    BlogPost.published.where(:date=>{'$gte' => start_date,'$lt' => end_date})
+    self.published.where(:date=>{'$gte' => start_date,'$lt' => end_date})
   end
 
   def self.blog_search(query)
@@ -71,7 +70,7 @@ class BlogPost
   end
 
   def self.archive
-    BlogPost.all.collect do |p|
+    self.all.collect do |p|
       [p.date.month, p.date.year]
     end.uniq
   end

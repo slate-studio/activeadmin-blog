@@ -32,7 +32,6 @@ gem "mongoid_slug"
 gem "mongoid_search", "~> 0.2.8"
 gem "nokogiri"
 gem "select2-rails"
-gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
 gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
 gem "mini_magick"
 gem "activeadmin-mongoid-reorder"
@@ -57,7 +56,6 @@ rails g mongoid:config
 rails g devise:install
 rails g active_admin:install
 rails g activeadmin_settings:install
-rails g redactor:install
 rails g active_admin:blog:install blog
 rails g bootstrap:install
 
@@ -157,7 +155,7 @@ end' > config/initializers/carrierwave.rb
 # Fix production assets to include all required files
 mv config/environments/production.rb config/environments/production-old.rb
 sed '/# config.assets.precompile += %w( search.js )/ a\
-  config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor-rails/css/style.css"]' config/environments/production-old.rb 1> config/environments/production.rb
+  config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor/css/style.css"]' config/environments/production-old.rb 1> config/environments/production.rb
 rm config/environments/production-old.rb
 
 

@@ -1,6 +1,6 @@
-## activeadmin-mongoid-blog
+## activeadmin-blog
 
-Blog app on the top of activeadmin and mongoid, using redactor and select2 plugins. Could be useful for almost every activeadmin based project.
+Blog app on the top of activeadmin and mongoid.
 
 
 ## Quick install

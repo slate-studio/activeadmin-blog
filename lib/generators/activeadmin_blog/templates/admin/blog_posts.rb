@@ -1,4 +1,4 @@
-ActiveAdmin.register BlogPost, :as => "Post" do
+ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
   menu :label => "Blog"
 
   actions :new, :create, :index, :update, :edit, :destroy

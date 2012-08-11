@@ -1,6 +1,5 @@
-#= require redactor-rails
-#= require select2
 #= require activeadmin_reorder_table
+#= require activeadmin_settings
 
 if !Array.prototype.last
   Array.prototype.last = () -> return this[this.length - 1]

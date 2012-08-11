@@ -7,53 +7,30 @@ module ActiveAdmin
         source_root File.expand_path('../templates', __FILE__)
 
         def copy_files
-          # models
-          puts "Installing models:"
-          copy_file "models/blog_category.rb",  "app/models/blog_category.rb"
-          copy_file "models/blog_post.rb",      "app/models/blog_post.rb"
-
-          # controllers
-          puts "Installing controllers:"
-          copy_file "controllers/blog_controller.rb", "app/controllers/blog_controller.rb"
-
           # admin
           puts "Installing admin:"
           copy_file "admin/blog_categories.rb", "app/admin/blog_categories.rb"
           copy_file "admin/blog_posts.rb",      "app/admin/blog_posts.rb"
         end
 
-        def setup_routes
-          route "get '/#{file_name}'             => 'blog#index', :as => :blog"
-          route "get '/#{file_name}/feed'        => 'blog#feed',  :as => :blog_rss_feed"
-          route "get '/#{file_name}/posts/:slug' => 'blog#post',  :as => :blog_post"
-        end
-
         def add_assets
           if File.exist?('app/assets/javascripts/active_admin.js')
             insert_into_file  "app/assets/javascripts/active_admin.js",
-                              "//= require activeadmin_mongoid_blog\n", :after => "base\n"
+                              "//= require activeadmin_blog\n", :after => "base\n"
           else
             puts "It doesn't look like you've installed activeadmin: active_admin.js is missing.\nPlease install it and try again."
           end
 
           if File.exist?('app/assets/stylesheets/active_admin.css.scss')
             insert_into_file  "app/assets/stylesheets/active_admin.css.scss",
-                              "//= require activeadmin_mongoid_blog\n", :before => "// Active Admin CSS Styles\n"
+                              "//= require activeadmin_blog\n", :before => "// Active Admin CSS Styles\n"
           else
             puts "It doesn't look like you've installed activeadmin: active_admin.scss is missing.\nPlease install it and try again."
           end
         end
 
-        def add_gems
-          gem "mongoid_slug"
-          gem "mongoid_search", "~> 0.2.8"
-          gem "nokogiri"
-          gem "activeadmin-mongoid-reorder"
-          gem "activeadmin-settings"
-          gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
-          gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
-          gem "mini_magick"
-          gem "select2-rails"
+        def mount_engine
+          route "mount ActiveadminBlog::Engine => '/#{file_name}'"
         end
 
         def show_congrats

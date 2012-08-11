@@ -1,4 +1,4 @@
-ActiveAdmin.register BlogCategory, :as => "Category" do
+ActiveAdmin.register ActiveadminBlog::BlogCategory, :as => "Category" do
   menu false
 
   actions :show, :new, :edit, :create, :update, :destroy

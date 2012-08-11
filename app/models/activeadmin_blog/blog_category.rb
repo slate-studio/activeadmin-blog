@@ -1,4 +1,4 @@
-class BlogCategory
+class ActiveadminBlog::BlogCategory
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
@@ -16,7 +16,7 @@ class BlogCategory
 	slug :name, :as => :permalink, :permanent => true
   
   # Relations
-  has_and_belongs_to_many :blog_posts
+  has_and_belongs_to_many :blog_posts, :class_name => "ActiveadminBlog::BlogPost"
 
   # Scope
   default_scope order_by(:_position => :desc)

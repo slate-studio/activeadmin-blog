@@ -1,7 +1,0 @@
-
-
-Blog app for active admin is now installed. Please run bundle to install missing gems. Then install redactor image model, this enables uploading images feature via activeadmin:
-
-    rails generate redactor:install
-
-Thanks for installing activeadmin-mongoid-blog!
