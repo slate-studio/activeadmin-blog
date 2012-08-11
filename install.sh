@@ -27,8 +27,8 @@ gem "devise"
 gem "activeadmin-mongoid"
 
 # Blog
-gem "activeadmin-settings"
-gem "activeadmin-mongoid-blog"
+gem "activeadmin-settings", :path => "../_lib/activeadmin-settings"
+gem "activeadmin-blog", :path => "../_lib/activeadmin-blog"
 
 # Bootstrap styles
 gem "therubyracer"
@@ -46,7 +46,7 @@ rails g mongoid:config
 rails g devise:install
 rails g active_admin:install
 rails g activeadmin_settings:install
-rails g active_admin:blog:install blog
+rails g activeadmin_blog:install blog
 rails g bootstrap:install
 
 
@@ -112,7 +112,7 @@ echo 'puts "EMPTY THE MONGODB DATABASE"
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 
 puts "SETTING UP DEFAULT ADMIN USER"
-Rake::Task["activeadmin:create_admin"].invoke
+Rake::Task["activeadmin:settings:create_admin"].invoke
 ' > db/seeds.rb
 
 

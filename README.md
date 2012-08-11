@@ -9,7 +9,7 @@ Blog app on the top of activeadmin and mongoid.
 
 Replace `new_blog` name with the real one and run:
 
-    export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-mongoid-blog/master/install.sh | sh
+    export project_name=new_blog ; curl https://raw.github.com/alexkravets/activeadmin-blog/master/install.sh | sh
 
 This command creates new rails project fully configured and ready for Heroku deploy.
 
@@ -31,24 +31,14 @@ Add these gems to Gemfile and run `bundle` command:
     gem "activeadmin-mongoid"
 
     # Activeadmin Mongoid Blog
-    gem "mongoid_slug"
-    gem "mongoid_search"
-    gem "nokogiri"
-    gem "select2-rails"
-    gem "redactor-rails", :git => "git://github.com/alexkravets/redactor-rails.git"
-    gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
-    gem "mini_magick"
-    gem "activeadmin-mongoid-reorder"
     gem "activeadmin-settings"
-    gem "activeadmin-mongoid-blog"
+    gem "activeadmin-blog"
 
     # Bootstrap styles
     gem "therubyracer"
     gem "twitter-bootstrap-rails"
 
     # Assets
-    gem "aws-s3"
-    gem "fog"
     gem "asset_sync"
 
 Run following generators:
@@ -58,11 +48,11 @@ Run following generators:
     $ rails g active_admin:install
     $ rails g redactor:install
     $ rails g activeadmin_settings:install
-    $ rails g active_admin:blog:install blog
+    $ rails g activeadmin_blog:install blog
 
 Create default admin user for activeadmin:
 
-    rake activeadmin:create_admin
+    rake activeadmin:settings:create_admin
 
 Run `rails s` blog should be accesible at `http://localhost:3000/blog`
 
@@ -70,7 +60,7 @@ Run `rails s` blog should be accesible at `http://localhost:3000/blog`
 
 Install default views templates to `/app/views/blog`:
 
-    $ rails g active_admin:blog:views blog
+    $ rails g activeadmin_blog:views blog
 
 ### Default style
 
@@ -162,13 +152,11 @@ Make sure you've set Heroku environtment variables:
 
 Add the following line to `config/environments/production.rb`:
 
-    config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor-rails/css/style.css"]
+    config.assets.precompile += ["active_admin.js", "active_admin.css", "redactor/css/style.css"]
 
 
 ## TODO
 
-- Make sidebar category widget, so no nested menus for blog;
-- Make settings and admin_user a different tabs on the same settings page;
 - Admin blog post search;
 
 ### The End
