@@ -27,8 +27,7 @@ class ActiveadminBlog::BlogPost
   has_and_belongs_to_many :categories, :class_name => "ActiveadminBlog::BlogCategory"
 
   # Scopes
-  default_scope order_by(:date => :desc)
-  scope         :ideas,     where(published: false)
+  default_scope order_by(:published => :asc).order_by({:date => :desc})
   scope         :published, where(published: true)
 
   # Helpers
