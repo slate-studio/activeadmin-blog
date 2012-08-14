@@ -4,27 +4,33 @@
 if !Array.prototype.last
   Array.prototype.last = () -> return this[this.length - 1]
 
-$ ->
-  # Fix header menu for category pages
+enable_collapsable_details = ->
+  $('.collapsed .collapse-button-show').live 'click', (e) ->
+    e.preventDefault()
+    $(this).closest('.collapsed').removeClass('collapsed')
+
+  $('form .collapse-button-hide').click (e) ->
+    e.preventDefault()
+    $(this).closest('fieldset').addClass('collapsed')
+
+enable_header_link_highlight = ->
   if $('.admin_categories').length > 0
     $('#header #blog').addClass("current")
-  
-  # Enable redactor
-  $('.redactor').redactor 
-    imageUpload:  "/redactor_rails/pictures"
-    imageGetJson: "/redactor_rails/pictures"
 
-  # Enable select2
+enable_redactor = ->
+  $('.redactor').redactor()
+
+enable_select2 = ->
   $('.select2').select2
     minimumResultsForSearch: 10
 
   tags_input = $("#post_tags")
+  
   if tags_input.length > 0
     tags_url = tags_input.attr("data-url")
     $.get tags_url, (tags) => tags_input.select2({tags: tags })
 
-# Reorder functionality
-$ ->
+categories_reorder = ->
   categories_sortable_options = (url) ->
     options =
       stop: (e, ui) ->
@@ -53,4 +59,9 @@ $ ->
     .disableSelection()
 
 
-
+$ ->
+  enable_collapsable_details()
+  enable_header_link_highlight()
+  enable_redactor()
+  #enable_select2()
+  categories_reorder()

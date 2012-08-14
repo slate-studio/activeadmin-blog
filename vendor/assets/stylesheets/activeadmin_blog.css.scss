@@ -6,8 +6,8 @@
 
   #post_title { font-size:2em; }
   
-  #post_category_ids { width:76%; }
-  #post_draft { width:160px; }
+  //#post_category_ids { width:76%; }
+  #post_category_ids { width:160px; }
   #post_date { width:138px; }
 }
 
@@ -29,7 +29,6 @@
 }
 
 #categories_sidebar_section {
-  margin-top:36px;
   ul {
     margin:0px; padding:0px;
     list-style:none;
@@ -47,5 +46,27 @@
   .links {
     height:22px;
     margin-bottom:14px;
+  }
+}
+
+.admin_posts, .admin_categories {
+  .breadcrumb { display:none; }
+}
+
+// Collapse blog post details
+.admin_posts form {
+  .inputs.collapsed {
+    padding:0;
+
+    .collapse-button-hide { display: none; }
+    .collapse-button-show { display: inline; }
+
+    ol { display:none; }
+  }  
+
+  .collapse-button-hide, .collapse-button-show { float:right; }
+
+  .collapse-button-show {
+    display:none;
   }
 }

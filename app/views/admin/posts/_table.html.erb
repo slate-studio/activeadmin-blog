@@ -1,0 +1,51 @@
+<table border="0" cellspacing="0" cellpadding="0" id="posts" class="index_table">
+  <thead>
+    <tr>
+      <th class=""></th>
+      <th class="">Post</th>
+      <th class="">Status</th>
+      <th class=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |p| %>
+      <tr>
+        <td class="featured-image">
+          <% if p.featured_image.thumb.url.nil? %>
+            <%= image_tag("http://placehold.it/118x100&text=NO+IMAGE", :alt=>p.title, :size=>"118x100") %>
+          <% else %>
+            <%= image_tag(p.featured_image.thumb.url, :alt=>p.title, :size=>"118x100") %>
+          <% end %>
+        </td>
+
+        <td class="post-details">
+          <p>
+            <strong><%= p.title %></strong>
+            <br/>
+            <em><%= truncate(p.excerpt, :length => 90) %></em>
+          </p>
+          
+          <% if not p.tags.empty? %>
+            Tags: <em><%= p.tags.gsub(',', ', ') %></em>
+            <br/>
+          <% end %>
+          
+          <% if p.categories.size > 0 %>
+            Published in: <%= p.categories.collect{ |c| link_to(c.name, admin_category_path(c)) }.join(", ").html_safe %>
+          <% end %>
+        </td>
+
+        <td class="post-status">
+          <%= p.date.to_s.gsub('-', '/') %>
+          <br/>
+          <i><%= p.published ? 'Published' : 'Not Published' %></i>
+        </td>
+        
+        <td class="actions">
+          <%= link_to("Edit",   edit_admin_post_path(p), :class => "member_link") %>
+          <%= link_to("Delete", admin_post_path(p),      :class => "member_link", :method => :delete, :confirm => "Are you sure?") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

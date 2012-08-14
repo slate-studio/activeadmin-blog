@@ -1,0 +1,57 @@
+<fieldset class="inputs"><legend><span>Title</span></legend><ol>
+  <%= f.input :title, :required => true %>
+</ol></fieldset>
+
+<fieldset class="inputs<% if f.object.new? %> collapsed<% end %>">
+<legend>
+  <span>Details
+    <a class="collapse-button-hide" href="#" title="Hide details">Hide</a>
+    <a class="collapse-button-show" href="#" title="Show details">Show</a>
+  </span>
+</legend>
+<ol>
+  <%= f.input :featured_image, :hint => f.object.has_featured_image? ? image_tag(f.object.featured_image.thumb.url, :size => "118x100") : "" %>
+
+  <% if f.object.has_featured_image? %>
+    <%= f.input :remove_featured_image, :as => :boolean %>
+  <% end %>
+
+  <% if not f.object.new? %>
+    <%= f.input :permalink %>
+  <% end %>
+
+  <%= f.input :date,  :input_html => { :class => "datepicker", :placeholder => "Click field to pick date" } %>
+
+  <% categories = ActiveadminBlog::BlogCategory.all
+     if categories.size > 0 %>
+    
+    <%= f.input :categories,  :as             => :select,
+                              :label          => "Published in",
+                              :input_html     => { :multiple => true, :class => "select2" },
+                              :collection     => categories,
+                              :include_blank  => false,
+                              :hint           => "Select one or several categories" %>
+  <% end %>
+
+  <%= f.input :tags,  :hint       => "Tags separted by comma",
+                      :input_html => { "data-url"  => "/admin/posts/tags" } %>
+
+  <%= f.input :published, :as => :boolean, :label => "Published" %>
+
+</ol></fieldset>
+
+<fieldset class="inputs"><legend><span>Content</span></legend><ol>
+  <%= f.input :content, :as => :text, :input_html => { :class => "redactor" }%>
+</ol></fieldset>
+
+<fieldset class="buttons">
+<ol>
+  <li class="commit button">
+    <input class="update" name="commit" type="submit"
+     value="<% if f.object.new? %>Create<% else %>Update<% end %> Post">
+  </li>
+  <li class="cancel">
+    <a href="<%= admin_posts_path %>">Cancel</a>
+  </li>
+</ol>
+</fieldset>

@@ -1,0 +1,5 @@
+<% if category.blog_posts.size > 0 %>
+  <%= render :partial => "admin/posts/table", :locals => {:posts => category.blog_posts} %>
+<% else %>
+  <p>No posts here yet.</p>
+<% end %>

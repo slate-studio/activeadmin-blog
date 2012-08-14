@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    activeadmin-blog (0.4.0)
+    activeadmin-blog (0.4.1)
       activeadmin-mongoid
       activeadmin-mongoid-reorder
       activeadmin-settings

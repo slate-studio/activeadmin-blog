@@ -1,0 +1,5 @@
+<% if @posts.size > 0 %>
+  <%= render :partial => "table", :locals => {:posts => @posts} %>
+<% else %>
+  <p>No posts here yet.</p>
+<% end %>
