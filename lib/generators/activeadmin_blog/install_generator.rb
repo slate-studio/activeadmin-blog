@@ -29,7 +29,7 @@ module ActiveadminBlog
       end
 
       def mount_engine
-        route "mount ActiveadminBlog::Engine => '/#{file_name}'"
+        route "mount_blog_at '/#{file_name}'"
       end
 
       def show_congrats

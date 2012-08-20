@@ -46,7 +46,6 @@ Run following generators:
     $ rails g mongoid:config
     $ rails g devise:install
     $ rails g active_admin:install
-    $ rails g redactor:install
     $ rails g activeadmin_settings:install
     $ rails g activeadmin_blog:install blog
 
