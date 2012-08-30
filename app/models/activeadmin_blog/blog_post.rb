@@ -33,6 +33,10 @@ class ActiveadminBlog::BlogPost
   default_scope order_by(:published => :asc).order_by({:date => :desc})
   scope         :published, where(published: true)
 
+  # Indexes
+  index :slug rescue index slug: 1
+            # Mongoid 3.x workaround
+
   # Helpers
   def has_featured_image?
     not featured_image.to_s.empty?
@@ -51,17 +55,13 @@ class ActiveadminBlog::BlogPost
     Nokogiri::HTML(excerpt).text
   end
 
-  # ==============================
-  # Mongoid 3.x
-  # ------------------------------
-  def new?
+  def new? # Mongoid 3.x
     new_record?
   end
-  # ==============================
 
   # Class methods
   def self.published_in_category(category_slug)
-    category = ActiveadminBlog::BlogCategory.find_by_permalink!(category_slug)
+    category = ActiveadminBlog::BlogCategory.find_by(slug: category_slug)
     category.blog_posts.published
   end
 

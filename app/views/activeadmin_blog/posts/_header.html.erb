@@ -4,7 +4,7 @@
     <ul>
       <li><a href="<%= blog_path %>" title="All Posts">All Posts</a></li>
       <% @categories.all.each do |c| %>
-        <li><a href="<%= blog_category_path(c) %>" title="<%= c.name %>"><%= c.name %></a></li>
+        <li><a href="<%= blog_category_path(c.slug) %>" title="<%= c.name %>"><%= c.name %></a></li>
       <% end %>
     </ul>
   </p>

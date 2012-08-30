@@ -1,7 +1,7 @@
 <fieldset class="inputs"><legend><span>Details</span></legend><ol>
   <%= f.input :name, :required => true %>
   <% if not f.object.new? %>
-    <%= f.input :permalink %>
+    <%= f.input :slug %>
   <% end %>
 </ol></fieldset>
 

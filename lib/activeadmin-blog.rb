@@ -1,4 +1,5 @@
 require "nokogiri"
+require "stringex"
 
 require "activeadmin-mongoid-reorder"
 require "activeadmin-settings"
