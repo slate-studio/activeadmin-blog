@@ -7,8 +7,6 @@ ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
     def index
       redirect_to all_admin_posts_path
     end
-
-    defaults :finder => :find_by_permalink
   end
 
   form do |f|
@@ -16,16 +14,13 @@ ActiveAdmin.register ActiveadminBlog::BlogPost, :as => "Post" do
   end
 
   collection_action :tags, :method => :get do
-    tags    = ActiveadminBlog::BlogPost.all.collect{ |p| p.tags }.join(",").split(',').uniq
+    tags = ActiveadminBlog::BlogPost.all.collect{ |p| p.tags }.join(",").split(',').uniq
     render :json => tags
   end
 
   collection_action :all do
     @page_title = "All Posts"
-    @posts = ActiveadminBlog::BlogPost.all
-  end
-
-  sidebar :categories, :only => :all do
-    render :partial => "categories", :locals => { :categories => ActiveadminBlog::BlogCategory.all }
+    @posts      = ActiveadminBlog::BlogPost.all
+    @categories = ActiveadminBlog::BlogCategory.all
   end
 end

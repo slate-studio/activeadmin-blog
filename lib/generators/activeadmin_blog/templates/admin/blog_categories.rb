@@ -21,16 +21,11 @@ ActiveAdmin.register ActiveadminBlog::BlogCategory, :as => "Category" do
         format.html { redirect_to admin_posts_path }
       end
     end
-
-    defaults :finder => :find_by_permalink
   end
 
   show :title => :name do
-    render :partial => "show", :locals => { :category => category }
-  end
-
-  sidebar :categories, :only => :show do
-    render :partial => "admin/posts/categories", :locals => { :categories => ActiveadminBlog::BlogCategory.all }
+    render partial: "show", locals: { category:   category,
+                                      categories: ActiveadminBlog::BlogCategory.all }
   end
 
   form do |f|

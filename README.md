@@ -22,24 +22,42 @@ This command creates new rails project fully configured and ready for Heroku dep
 
 ### Setup and configure ActiveAdmin
 
-Add these gems to Gemfile and run `bundle` command:
+#### Mongoid 2.x gem set
 
-    # Activeadmin
     gem "bson_ext"
-    gem "mongoid"
+    gem "mongoid",            '~> 2.0'
+    gem 'mongoid_search',     '~> 0.2.8'
     gem "devise"
     gem "activeadmin-mongoid"
-
-    # Activeadmin Mongoid Blog
-    gem "activeadmin-settings"
+    gem "carrierwave-mongoid"
     gem "activeadmin-blog"
 
-    # Bootstrap styles
-    gem "therubyracer"
-    gem "twitter-bootstrap-rails"
+    # Assets
+    gem "aws-s3"
+    gem "fog"
+    gem "mini_magick"
+    gem "asset_sync"
+
+
+#### Mongoid 3.x gem set
+
+    # Mongoid 3.x
+    gem 'moped',                git: 'git://github.com/mongoid/moped.git'
+    gem "mongoid",              "~> 3.0.5"
+    gem "mongoid_search"
+    gem "devise",               ">= 2.1.2"
+    gem "activeadmin-mongoid",  git: "git://github.com/elia/activeadmin-mongoid.git"
+    gem "carrierwave-mongoid",  git: "git://github.com/jnicklas/carrierwave-mongoid.git",
+                                branch: "mongoid-3.0",
+                                require: 'carrierwave/mongoid'
+    gem "activeadmin-blog"
 
     # Assets
+    gem "aws-s3"
+    gem "fog"
+    gem "mini_magick"
     gem "asset_sync"
+
 
 Run following generators:
 
