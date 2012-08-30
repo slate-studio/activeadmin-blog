@@ -28,7 +28,10 @@
   }
 }
 
-#categories_sidebar_section {
+.blog-posts-sidebar {
+  float: right;
+  width: 270px;
+
   ul {
     margin:0px; padding:0px;
     list-style:none;
@@ -36,6 +39,10 @@
   .action-buttons {
     float:right;
   }
+}
+
+.blog-posts-table {
+  margin-right:300px;
 }
 
 #category_posts_page {

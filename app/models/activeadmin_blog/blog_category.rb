@@ -24,5 +24,10 @@ class ActiveadminBlog::BlogCategory
 
   # Indexes
   index :slug rescue index slug: 1
-            # Mongoid 3.x workaround  
+            # Mongoid 3.x workaround
+
+  # Helpers       
+  def new? # Mongoid 3.x
+    new_record?
+  end
 end

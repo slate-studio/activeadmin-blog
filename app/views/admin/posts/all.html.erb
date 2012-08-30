@@ -1,5 +1,11 @@
-<% if @posts.size > 0 %>
-  <%= render :partial => "table", :locals => {:posts => @posts} %>
-<% else %>
-  <p>No posts here yet.</p>
-<% end %>
+<div class="panel blog-posts-sidebar">
+  <%= render partial: "sidebar", locals: { categories: @categories } %>
+</div>
+
+<div class="blog-posts-table">
+  <% if @posts.size > 0 %>
+    <%= render :partial => "table", :locals => {:posts => @posts} %>
+  <% else %>
+    <p>No posts here yet.</p>
+  <% end %>
+</div>
