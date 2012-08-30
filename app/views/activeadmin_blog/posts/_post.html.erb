@@ -1,6 +1,6 @@
 <div style="margin-bottom:2em;">
   <!-- TITLE -->
-  <a href="<%= blog_post_path(post) %>" title="Read this post"><h2><%= post.title %></h2></a>
+  <a href="<%= blog_post_path(post.slug) %>" title="Read this post"><h2><%= post.title %></h2></a>
 
   <!-- DATE & CATEGORIES -->
   <p>
@@ -17,7 +17,7 @@
   <!-- FEATURED IMAGE LINK -->
   <% if post.has_featured_image? %>
     <p>
-      <a href="<%= blog_post_path(post) %>" title="Read More">
+      <a href="<%= blog_post_path(post.slug) %>" title="Read More">
         <%= image_tag post.featured_image_url, :alt=>post.title %>
       </a>
     </p>
@@ -27,5 +27,5 @@
   <p><%= post.excerpt %></p>
 
   <!-- READ MORE -->
-  <a href="<%= blog_post_path(post) %>" title="Read More">Read More</a>
+  <a href="<%= blog_post_path(post.slug) %>" title="Read More">Read More</a>
 </div>

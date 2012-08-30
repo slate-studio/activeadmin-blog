@@ -17,7 +17,7 @@
   <% end %>
 
   <% if not f.object.new? %>
-    <%= f.input :permalink %>
+    <%= f.input :slug %>
   <% end %>
 
   <%= f.input :date,  :input_html => { :class => "datepicker", :placeholder => "Click field to pick date" } %>

@@ -36,7 +36,7 @@ class ActiveadminBlog::PostsController < ApplicationController
   end
 
   def show
-    @post = ActiveadminBlog::BlogPost.find_by_permalink!(params[:slug])
+    @post = ActiveadminBlog::BlogPost.find_by(slug:params[:slug])
   end
 
   def feed

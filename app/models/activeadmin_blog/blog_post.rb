@@ -1,24 +1,27 @@
 class ActiveadminBlog::BlogPost
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Slug
   include Mongoid::Search
 
   include ActionView::Helpers::TextHelper
 
   # Fields
   field :title
-  field :content
-  field :tags,      :default => ""
-  field :published, :type => Boolean, :default => false
-  field :date,      :type => Date
+  field :content,   default: ''
+  field :tags,      default: ''
+  field :published, type: Boolean, default: false
+  field :date,      type: Date
+  field :slug,      default: ''
+
+  # Callbacks
+  set_callback(:save, :before) do |post|
+    post.slug = post.title.to_url if post.slug.nil? or post.slug.empty?
+  end
 
   # Validations
-  validates_presence_of :title
-  validates_uniqueness_of :title
+  validates :title, presence: true, uniqueness: true
 
   # Features
-  slug            :title, :as => :permalink, :permanent => true
   search_in       :title, :content, :tags
   mount_uploader  :featured_image, ActiveadminSettings::RedactorPictureUploader
   paginates_per 6
@@ -47,6 +50,14 @@ class ActiveadminBlog::BlogPost
   def page_description
     Nokogiri::HTML(excerpt).text
   end
+
+  # ==============================
+  # Mongoid 3.x
+  # ------------------------------
+  def new?
+    new_record?
+  end
+  # ==============================
 
   # Class methods
   def self.published_in_category(category_slug)
