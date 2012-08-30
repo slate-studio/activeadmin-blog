@@ -23,7 +23,7 @@ class ActiveadminBlog::BlogPost
 
   # Features
   search_in       :title, :content, :tags
-  mount_uploader  :featured_image, ActiveadminSettings::RedactorPictureUploader
+  mount_uploader  :featured_image, ActiveadminBlog::FeaturedImageUploader
   paginates_per 6
 
   # Relations
