@@ -4,7 +4,7 @@ class ActiveadminBlog::BlogCategory
   include Mongoid::Reorder
 
   # Fields
-  field :name
+  field :name,      localize: true
   field :slug,      default: ''
   field :_position, :type => Float, :default => 0.0
 

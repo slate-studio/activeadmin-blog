@@ -6,12 +6,12 @@ class ActiveadminBlog::BlogPost
   include ActionView::Helpers::TextHelper
 
   # Fields
-  field :title
-  field :content,   default: ''
-  field :tags,      default: ''
-  field :published, type: Boolean, default: false
+  field :title,     localize: true
+  field :content,   localize: true, default: ''
+  field :tags,                      default: ''
+  field :published, type: Boolean,  default: false
   field :date,      type: Date
-  field :slug,      default: ''
+  field :slug,                      default: ''
 
   # Callbacks
   set_callback(:save, :before) do |post|
