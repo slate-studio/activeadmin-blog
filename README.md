@@ -1,7 +1,12 @@
 ## activeadmin-blog
 
-Blog app on the top of activeadmin and mongoid.
+**DEPRECATED**
 
+This gem is not supported and developed anymore. For a flexible Rails CMS solutions we recommend to have a look at [Character](https://github.com/slate-studio/chr) & [Venice](https://github.com/alexkravets/venice) projects.
+
+--
+
+Blog app on the top of activeadmin and mongoid.
 
 ## Quick install
 
